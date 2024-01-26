@@ -1,0 +1,13 @@
+1. Watches your .go files in a directory and invokes go build if a file changed. Nothing more.:
+    https://github.com/saurabhranjan007/CompileDaemon
+    Command - $ CompileDaemon -command="./MyProgram -my-options"
+    Usage - first download the package using go get and then to install run the same cmd with go install
+
+2. Loads env vars from a .env file
+    https://github.com/saurabhranjan007/godotenv
+
+3. Gin web framework
+    https://gin-gonic.com/docs/quickstart/
+
+4. Go ORM Tool 
+    https://gorm.io/docs/
