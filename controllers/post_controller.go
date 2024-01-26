@@ -22,16 +22,14 @@ func Home(c *gin.Context) {
 // #### CREATE POST ####
 func PostCreate(c *gin.Context) {
 
-	// REQ BODY: Struct
+	// Get the request body and bind 
 	var req_body struct {
 		Body  string
 		Title string
 	}
-
-	// BIND: Req Body Struct
 	c.Bind(&req_body)
 
-	// PREPARING DATA FOR INSERTION
+	// Req data to insert 
 	post := models.Post{
 		Title: req_body.Title,
 		Body:  req_body.Body,
@@ -50,20 +48,20 @@ func PostCreate(c *gin.Context) {
 	})
 }
 
-// #### GET POSTS ####
+// #### GET ALL POSTS ####
 func ReadPosts(c *gin.Context) {
 
 	var posts []models.Post
 
 	initializers.DB.Find(&posts)
 
-	// Retur posts
+	// Return posts
 	c.JSON(200, gin.H{
 		"posts": posts,
 	})
 }
 
-// #### GET POST(:id) ####
+// #### GET POST(:id) - Single ####
 func GetPost(c *gin.Context) {
 
 	// Get ID form URL
@@ -73,7 +71,7 @@ func GetPost(c *gin.Context) {
 
 	initializers.DB.Find(&post, id)
 
-	// Retur posts
+	// Return post
 	c.JSON(200, gin.H{
 		"posts": post,
 	})
@@ -87,7 +85,7 @@ func PostUpdate(c *gin.Context) {
 	// Get the id from URL
 	id := c.Param("id")
 
-	// Get data off request body (bind as well)
+	// Get data off the request body (bind as well)
 	var req_body struct {
 		Body  string
 		Title string
